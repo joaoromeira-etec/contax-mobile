@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 
 
-export default function MenuME(){
+export default function Dashboard(){
 
     return(
         <View>
-            <Text>Login</Text>
+            <Text>Dashboard</Text>
         </View>
     )
 

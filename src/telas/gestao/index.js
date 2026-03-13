@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 
 
-export default function Documentos(){
+export default function Gestao(){
 
     return(
         <View>
-            <Text>Documentos</Text>
+            <Text>Gestao Financeira</Text>
         </View>
     )
 
