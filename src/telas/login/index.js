@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import styles from './styles';
 
 import {
   useNavigation,
@@ -11,12 +12,13 @@ export default function Login(){
     const navigation = useNavigation();
 
     return(
-        <View>
-            <Text>Login</Text>
-            <TouchableOpacity onPress={() => navigation.navigate('MyTabs')}>
-                <Text>Acessar Sistema</Text>
-            </TouchableOpacity>
-        </View>
-    )
+            <View style={styles.container}>
+                <Text style={styles.titulo}>Login</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('MyTabs')}>
+                    <Text style={styles.txt}>Acessar Sistema</Text>
+                </TouchableOpacity>
+            </View>
 
+
+    )
 }
