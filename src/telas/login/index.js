@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity} from 'react-native';
 import styles from './styles';
 
 import {
@@ -14,8 +14,8 @@ export default function Login(){
     return(
             <View style={styles.container}>
                 <Text style={styles.titulo}>Login</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('MyTabs')}>
-                    <Text style={styles.txt}>Acessar Sistema</Text>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyTabs')}>
+                    <Text style={styles.buttontxt}>Entrar no sistema</Text>
                 </TouchableOpacity>
             </View>
 
