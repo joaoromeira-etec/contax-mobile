@@ -15,6 +15,9 @@ export default function Login(){
             <View style={styles.container}>
                 <Text style={styles.titulo}>Login</Text>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyTabs')}>
+                    <Text style={styles.buttontxt}>Entrar como</Text>
+                </TouchableOpacity>,
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('MyTabs')}>
                     <Text style={styles.buttontxt}>Entrar no sistema</Text>
                 </TouchableOpacity>
             </View>
