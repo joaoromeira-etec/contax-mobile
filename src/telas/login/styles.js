@@ -1,50 +1,111 @@
-import { StyleSheet } from "react-native";
-import { FullWindowOverlay } from "react-native-screens";
-//StyleSheet: API do React Native para definir estilos de forma otimizada
-//import {RFPercentage} from "react-native-responsive-fontsize";
-//RFPercentage: Biblioteca react-native-responsive-fontsize usada para definir tamanhos de fonte de forma responsiva, baseada na porcentagem do tamanho da tela
-const styles=StyleSheet.create(
-    {  
-        container:{
-            backgroundColor:'#fff',
-            padding:8,
-            flex:1, 
-            //Ocupa todo o espaço disponível na tela 
-            alignItems:'center',
-            borderRadius:20
-            //Deixa as bordas arredondadas.
-            },
+import { StyleSheet } from 'react-native';
 
-        titulo:{
-            fontSize:30,
-            color: '#48ACBB',
-            fontWeight:'bold',
-            marginTop:10,
-            marginBottom:10,
-            padding:8,
-            width:'100%',
-            height:80,
-            textAlign:'center',
-            textAlignVertical:'center',
-            //somente no Android
-            borderRadius:20},
-        
-        txt:{
-            fontSize: 20
-            //Define um tamanho de fonte responsivo(2.2% da altura da tela)
-            },
+const styles = StyleSheet.create({
+  // Container principal com a margem horizontal que você pediu
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 30, // Distância segura das bordas do celular
+    justifyContent: 'center',
+  },
+  header: {
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  logoText: {
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: '#00A8B5', // Ciano da marca
+    letterSpacing: 1,
+  },
+  subLogo: {
+    fontSize: 12,
+    color: '#666',
+    marginTop: 4,
+  },
+  label: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 8,
+    marginTop: 15,
+    fontWeight: '600',
+  },
+  // O "BOTÃO" QUE FINGE SER UM SELECT
+  selectBox: {
+    width: '100%',
+    height: 52,
+    backgroundColor: '#F9F9F9',
+    borderWidth: 1,
+    borderColor: '#EEE',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  selectText: {
+    fontSize: 16,
+    color: '#333',
+  },
+  setinha: {
+    fontSize: 12,
+    color: '#00A8B5',
+  },
+  // A LISTA QUE APARECE AO CLICAR
+  dropdownContainer: {
+    width: '100%',
+    backgroundColor: '#FFF',
+    borderRadius: 10,
+    marginTop: 5,
+    borderWidth: 1,
+    borderColor: '#EEE',
+    // Sombras para flutuar sobre o layout
+    elevation: 5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    zIndex: 1000, // Garante que fique por cima de tudo
+  },
+  opcaoItem: {
+    padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#F5F5F5',
+  },
+  opcaoTexto: {
+    fontSize: 15,
+    color: '#444',
+  },
+  // INPUTS DE TEXTO
+  input: {
+    width: '100%',
+    height: 52,
+    backgroundColor: '#F9F9F9',
+    borderWidth: 1,
+    borderColor: '#EEE',
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    fontSize: 16,
+  },
+  button: {
+    backgroundColor: '#00A8B5',
+    height: 55,
+    borderRadius: 10,
+    marginTop: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  footer: {
+    marginTop: 40,
+    textAlign: 'center',
+    fontSize: 12,
+    color: '#AAA',
+  }
+});
 
-        button:{
-            padding: 10,
-            backgroundColor:'#0091A5',
-        },
-
-        buttontxt:{
-            textAlign: 'center',
-            color: '#fff',
-            fontWeight: 'bold',
-            marginHorizontal: '25%',
-        },
-        }
-    );
 export default styles;
