@@ -1,14 +1,38 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert } from 'react-native';
 import styles from './styles'; // Importando seu arquivo de estilos
 
-export default function App() {
+export default function Login({navigation}) {
   // ESTADOS (A memória do componente)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Menu aberto ou fechado?
   const [selectedRole, setSelectedRole] = useState('Administrador'); // Qual cargo foi escolhido?
   const [password, setPassword] = useState(''); // Senha digitada
 
   const cargos = ['Administrador', 'Contador', 'Empresa'];
+
+  // FUNÇÃO DE VALIDAÇÃO E REDIRECIONAMENTO
+  const handleLogin = () => {
+    // 1. Verificação básica: Senha vazia
+    if (password.trim() === '') {
+      Alert.alert('Erro', 'Por favor, digite sua senha.');
+      return;
+    }
+
+    // 2. Simulação de verificação de senha (exemplo: senha padrão '123456')
+    // Na vida real, aqui você faria uma chamada para o seu backend/banco de dados
+    if (password === '123456'){
+      Alert.alert('Erro', 'Por favor, digite sua senha.');
+      return;
+    }
+
+    // Supondo que o nome da sua rota de abas seja "HomeTabs"
+    if (password === '123456') {
+      // Este comando "pula" para dentro do seu BottomTabNavigator
+      navigation.navigate('HomeTabs'); 
+    } else {
+      Alert.alert('Acesso Negado', 'Senha incorreta.');
+    }
+  };
 
   return (
     <KeyboardAvoidingView 
@@ -66,7 +90,7 @@ export default function App() {
         {/* BOTÃO DE ACESSO */}
         <TouchableOpacity 
           style={styles.button}
-          onPress={() => alert('Fazendo login como ' + selectedRole)}
+          onPress={handleLogin}
         >
           <Text style={styles.buttonText}>Entrar no sistema</Text>
         </TouchableOpacity>
