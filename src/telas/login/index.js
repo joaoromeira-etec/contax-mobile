@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert } from 'react-native';
-import styles from './styles'; // Importando seu arquivo de estilos
+import React, {useState} from 'react';
+import {View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert} from 'react-native';
+import styles from './styles';
 
 export default function Login({navigation}) {
-  // ESTADOS (A memória do componente)
+// ESTADOS (A memória do componente)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // FUNÇÃO DE VALIDAÇÃO E REDIRECIONAMENTO
+// FUNÇÃO DE VALIDAÇÃO E REDIRECIONAMENTO
   const handleLogin = () => {
     if (!email.trim() || !password.trim()) {
       Alert.alert('Atenção', 'Preencha e-mail e senha.');
       return;
-    }
+      }
 
-// 2. CRIAR a variável emailLower (O ERRO ESTÁ AQUI SE ESTA LINHA SUMIR)
   const emailLower = email.toLowerCase();
 
 // --- ÁREA DE TESTES (SIMULAÇÃO DO BANCO DE DADOS) ---
@@ -25,22 +24,20 @@ export default function Login({navigation}) {
     } else if (emailLower === 'gerente@contax.com' && password === '123456') {
       nivelAcesso = 1; // Gerente
     } else if (emailLower === 'visitante@contax.com' && password === '123456') {
-      nivelAcesso = 0; // Visualizador (O que você quer testar agora)
+      nivelAcesso = 0; // Visualizador
     }
-    // ---------------------------------------------------
 
     if (nivelAcesso !== null) {
       // Redirecionamento baseado no nível detectado nos testes
       switch (nivelAcesso) {
         case 2:
-          navigation.navigate('MyTabs', { screen: 'Gestao' });
+          navigation.navigate('MyTabs', {screen: 'Gestao'});
           break;
         case 1:
-          navigation.navigate('MyTabs', { screen: 'Dashboard' });
+          navigation.navigate('MyTabs', {screen: 'Dashboard'});
           break;
         case 0:
-          // Certifique-se de que o nome 'Visualização' existe no seu BottomTab
-          navigation.navigate('MyTabs', { screen: 'Notas' }); 
+          navigation.navigate('MyTabs', {screen: 'Notas'}); 
           break;
       }
     } else {
