@@ -4,80 +4,77 @@ import styles from './styles'; // Importando seu arquivo de estilos
 
 export default function Login({navigation}) {
   // ESTADOS (A memória do componente)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Menu aberto ou fechado?
-  const [selectedRole, setSelectedRole] = useState('Administrador'); // Qual cargo foi escolhido?
-  const [password, setPassword] = useState(''); // Senha digitada
-
-  const cargos = ['Administrador', 'Contador', 'Empresa'];
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   // FUNÇÃO DE VALIDAÇÃO E REDIRECIONAMENTO
   const handleLogin = () => {
-    // 1. Verificação básica: Senha vazia
-    if (password.trim() === '') {
-      Alert.alert('Erro', 'Por favor, digite sua senha.');
+    if (!email.trim() || !password.trim()) {
+      Alert.alert('Atenção', 'Preencha e-mail e senha.');
       return;
     }
 
-    // 2. Simulação de verificação de senha (exemplo: senha padrão '123456')
-    // Na vida real, aqui você faria uma chamada para o seu backend/banco de dados
-    if (password === '123456'){
-      Alert.alert('Erro', 'Por favor, digite sua senha.');
-      return;
-    }
+// 2. CRIAR a variável emailLower (O ERRO ESTÁ AQUI SE ESTA LINHA SUMIR)
+  const emailLower = email.toLowerCase();
 
-    // Supondo que o nome da sua rota de abas seja "HomeTabs"
-    if (password === '123456') {
-      // Este comando "pula" para dentro do seu BottomTabNavigator
-      navigation.navigate('HomeTabs'); 
+// --- ÁREA DE TESTES (SIMULAÇÃO DO BANCO DE DADOS) ---
+    let nivelAcesso = null;
+
+    if (emailLower === 'admin@contax.com' && password === '123456') {
+      nivelAcesso = 2; // Administrador
+    } else if (emailLower === 'gerente@contax.com' && password === '123456') {
+      nivelAcesso = 1; // Gerente
+    } else if (emailLower === 'visitante@contax.com' && password === '123456') {
+      nivelAcesso = 0; // Visualizador (O que você quer testar agora)
+    }
+    // ---------------------------------------------------
+
+    if (nivelAcesso !== null) {
+      // Redirecionamento baseado no nível detectado nos testes
+      switch (nivelAcesso) {
+        case 2:
+          navigation.navigate('MyTabs', { screen: 'Gestao' });
+          break;
+        case 1:
+          navigation.navigate('MyTabs', { screen: 'Dashboard' });
+          break;
+        case 0:
+          // Certifique-se de que o nome 'Visualização' existe no seu BottomTab
+          navigation.navigate('MyTabs', { screen: 'Notas' }); 
+          break;
+      }
     } else {
-      Alert.alert('Acesso Negado', 'Senha incorreta.');
+      Alert.alert('Erro de Login', 'E-mail ou senha incorretos para teste.');
     }
   };
 
-  return (
+return (
     <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={{ flex: 1 }}
     >
       <ScrollView contentContainerStyle={styles.container}>
         
-        {/* CABEÇALHO */}
         <View style={styles.header}>
           <Text style={styles.logoText}>CONTAX</Text>
           <Text style={styles.subLogo}>Gestão ME & MEI</Text>
         </View>
 
-        {/* SELETOR CUSTOMIZADO (SUBSTITUTO DO PICKER) */}
-        <Text style={styles.label}>Entrar como</Text>
-        <TouchableOpacity 
-          style={styles.selectBox} 
-          activeOpacity={0.7}
-          onPress={() => setIsDropdownOpen(!isDropdownOpen)}
-        >
-          <Text style={styles.selectText}>{selectedRole}</Text>
-          <Text style={styles.setinha}>{isDropdownOpen ? '▲' : '▼'}</Text>
-        </TouchableOpacity>
-
-        {/* LISTA DE OPÇÕES (Só renderiza se isDropdownOpen for true) */}
-        {isDropdownOpen && (
-          <View style={styles.dropdownContainer}>
-            {cargos.map((item) => (
-              <TouchableOpacity 
-                key={item} 
-                style={styles.opcaoItem}
-                onPress={() => {
-                  setSelectedRole(item); // Muda o cargo
-                  setIsDropdownOpen(false); // Fecha o menu
-                }}
-              >
-                <Text style={styles.opcaoTexto}>{item}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        )}
+        {/* CAMPO DE E-MAIL */}
+        <Text style={styles.label}>E-mail de Acesso</Text>
+        <TextInput 
+          style={styles.input}
+          placeholder="seuemail@exemplo.com"
+          placeholderTextColor="#CCC"
+          keyboardType="email-address" // Abre o teclado com o símbolo "@"
+          autoCapitalize="none"        // Impede que a primeira letra seja maiúscula
+          autoCorrect={false}          // Desativa o corretor para não atrapalhar o e-mail
+          value={email}
+          onChangeText={setEmail}
+        />
 
         {/* CAMPO DE SENHA */}
-        <Text style={styles.label}>Senha do {selectedRole.toLowerCase()}</Text>
+        <Text style={styles.label}>Senha</Text>
         <TextInput 
           style={styles.input}
           placeholder="******"
@@ -87,15 +84,20 @@ export default function Login({navigation}) {
           onChangeText={setPassword}
         />
 
-        {/* BOTÃO DE ACESSO */}
+        {/* ESQUECI MINHA SENHA (OPCIONAL) */}
+        <TouchableOpacity style={{ alignSelf: 'flex-end', marginBottom: 20 }}>
+          <Text style={{ color: '#00A8B5', fontSize: 13 }}>Esqueceu a senha?</Text>
+        </TouchableOpacity>
+
         <TouchableOpacity 
           style={styles.button}
           onPress={handleLogin}
+          activeOpacity={0.8}
         >
           <Text style={styles.buttonText}>Entrar no sistema</Text>
         </TouchableOpacity>
 
-        <Text style={styles.footer}>CONTAX — Sistema ME & MEI</Text>
+        <Text style={styles.footer}>CONTAX — Sistema Seguro</Text>
 
       </ScrollView>
     </KeyboardAvoidingView>
