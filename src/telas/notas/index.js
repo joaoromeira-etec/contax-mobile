@@ -7,9 +7,9 @@ export default function Documentos() {
   const [viewingDoc, setViewingDoc] = useState(true); // Controla se o documento aberto aparece
 
   const documentos = [
-    { id: '1', data: '10/01/2026', desc: 'Nota Fiscal de Serviço', tipo: 'NF-e' },
-    { id: '2', data: '12/01/2026', desc: 'Recibo de Pagamento', tipo: 'Recibo' },
-    { id: '3', data: '15/01/2026', desc: 'Relatório Mensal', tipo: 'Relatório' },
+    { id: '1', data: '10/01', desc: 'Nota Fiscal de Serviço', tipo: 'NF-e' },
+    { id: '2', data: '12/01', desc: 'Recibo de Pagamento', tipo: 'Recibo' },
+    { id: '3', data: '15/01', desc: 'Relatório Mensal', tipo: 'Relatório' },
   ];
 
   const renderItem = ({ item }) => {
@@ -20,7 +20,6 @@ export default function Documentos() {
           <Text style={{color: '#00A8B5'}}>{isSelected ? '✓' : ''}</Text>
         </TouchableOpacity>
         <Text style={styles.cell}>{item.data}</Text>
-        <Text style={[styles.cell, { fontWeight: 'bold' }]}>{item.empresa}</Text>
         <Text style={styles.cell}>{item.desc}</Text>
         <Text style={styles.cell}>{item.tipo}</Text>
       </View>
@@ -37,7 +36,7 @@ export default function Documentos() {
           <View style={styles.filterRow}>
             <View style={{flex: 1, marginRight: 10}}>
               <Text style={styles.label}>Mês</Text>
-              <View style={styles.fakeInput}><Text>Janeiro de 2026</Text></View>
+              <View style={styles.fakeInput}><Text>Janeiro</Text></View>
             </View>
             <View style={{flex: 1}}>
               <Text style={styles.label}>Ano</Text>

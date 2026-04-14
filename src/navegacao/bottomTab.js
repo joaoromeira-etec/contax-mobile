@@ -7,10 +7,12 @@ const Tab = createBottomTabNavigator();
 
 export default function MyTabs() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+      headerShown: false}}>
       <Tab.Screen name="Dashboard" component={Dashboard} />
       <Tab.Screen name="Notas" component={Notas} />
-      <Tab.Screen name="Gestao" component={Gestao} />
+      {/* <Tab.Screen name="Gestao" component={Gestao} /> */}
     </Tab.Navigator>
   );
-}
+}  
