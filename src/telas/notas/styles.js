@@ -1,64 +1,96 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import { RFPercentage } from "react-native-responsive-fontsize";
 
 const { width } = Dimensions.get('window');
 
-export default StyleSheet.create({
-    safeArea: {
-        flex: 1, 
-        backgroundColor: '#F2F5F7'
-    },
+const styles=StyleSheet.create({
+    // --- ESTRUTURA BASE ---
     container: {
         flex: 1,
-        padding: 15
+        backgroundColor: '#F5F7F9',
+        padding: RFPercentage(2),
     },
-    logo: {
-        fontSize: 18,
+    logoContainer: { 
+        flexDirection: 'row', 
+        alignItems: 'center' 
+    },
+    logoImage: { 
+        width: 35, 
+        height: 35, 
+        marginRight: 10 
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 1
+    },
+    titulo: {
+        fontSize: RFPercentage(3),
+        color: '#0cbddd',
         fontWeight: 'bold',
-        color: '#00A8B5'
     },
-    logoSmall:
-    { fontSize: 12,
-        color: '#666',
-        fontWeight: 'normal'
+    subtitulo: {
+        fontSize: RFPercentage(1.8),
+        color: '#777',
     },
-    badge: {
-        color: '#888',
-        fontSize: 12
-    },
+    // --- CARDS E CONTEÚDO ---
     card: {
         backgroundColor: '#FFF',
-        borderRadius: 10,
-        padding: 15,
-        marginBottom: 15,
-        elevation: 3
+        borderRadius: 12,
+        borderColor: '#E2E8F0',
+        borderWidth: RFPercentage(0.1),
+        padding: RFPercentage(2),
+        marginTop: RFPercentage(2),
+        marginBottom: RFPercentage(2),
+        elevation: 3, //Android.
+        shadowColor: '#000', //iOS
+        shadowOpacity: 0.1,
+        shadowRadius: 4
     },
-    cardTitle: {
-        fontSize: 15,
+    divisor: {
+        height: RFPercentage(0.2),
+        width: '100%',
+        backgroundColor: '#E2E8F0',
+        marginVertical: RFPercentage(1)
+    },
+    cardTitulo: {
+        fontSize: RFPercentage(2.2),
         fontWeight: 'bold',
+        marginBottom: RFPercentage(1),
         color: '#333',
-        marginBottom: 10
     },
+    cardTexto: {
+            fontSize: RFPercentage(2),
+            fontWeight: '500',
+            color: '#777',
+            marginTop: RFPercentage(1),
+            marginBottom: RFPercentage(2),
+    },
+    // --- FILTROS ---
     filterRow: {
         flexDirection: 'row',
         marginBottom: 15
     },
     label: {
-        fontSize: 12,
-        color: '#666',
-        marginBottom: 5
+        fontSize: RFPercentage(2),
+        fontWeight: '500',
+        marginBottom: RFPercentage(0.5),
+        color: '#555',
     },
     fakeInput: {
-        height: 40,
+        height: 45,
         borderWidth: 1,
-        borderColor: '#DDD',
-        borderRadius: 5,
+        borderColor: '#E2E8F0',
+        borderRadius: 8,
         justifyContent: 'center',
-        paddingLeft: 10
+        paddingLeft: 12,
+        backgroundColor: '#F8FAFC'
     },
     btnFilter: {
         backgroundColor: '#00A8B5',
-        height: 40,
-        borderRadius: 5,
+        height: 45,
+        borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -66,24 +98,26 @@ export default StyleSheet.create({
         color: '#FFF',
         fontWeight: 'bold'
     },
+
+    // --- TABELA DE DOCUMENTOS ---
     tableHeader: {
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderBottomColor: '#EEE',
-        pb: 5,
-        mb: 5
+        paddingBottom: 8,
+        marginBottom: 5
     },
     th: {
         flex: 1,
         fontSize: 10,
-        color: '#AAA',
-        fontWeight: 'bold'
+        color: '#94A3B8',
+        fontWeight: 'bold',
     },
     row: {
         flexDirection: 'row',
-        paddingVertical: 10,
+        paddingVertical: 12,
         borderBottomWidth: 1,
-        borderBottomColor: '#F5F5F5',
+        borderBottomColor: '#F1F5F9',
         alignItems: 'center'
     },
     rowActive: {
@@ -91,7 +125,7 @@ export default StyleSheet.create({
     },
     cell: {
         flex: 1,
-        fontSize: 10,
+        fontSize: 11,
         color: '#444'
     },
     checkbox: {
@@ -104,50 +138,56 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+
+    // --- PREVIEW DO DOCUMENTO ---
     previewCard: {
         backgroundColor: '#FFF',
-        borderRadius: 10,
-        padding: 10,
-        elevation: 3
+        borderRadius: 12,
+        padding: 15,
+        elevation: 3,
+        marginTop: 10,
+        borderWidth: 1,
+        borderColor: '#E2E8F0'
     },
     previewHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        mb: 10
+        marginBottom: 15
     },
     previewTitle: {
-        fontSize: 12,
+        fontSize: 13,
         fontWeight: 'bold',
         color: '#333'
     },
     docImagePlaceholder: {
         width: '100%',
-        height: 200,
-        backgroundColor: '#FAFAFA',
+        height: 250,
+        backgroundColor: '#F1F5F9',
         borderStyle: 'dashed',
         borderWidth: 1,
-        borderColor: '#CCC',
+        borderColor: '#CBD5E1',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        borderRadius: 8
     },
+
+    // --- AÇÕES FLUTUANTES / BOTTOM ---
     actionContainer: {
-        position: 'bottom',
-        //bottom: 70,
-        left: 0,
-        right: 0,
         backgroundColor: '#FFF',
-        padding: 15,
+        padding: 20,
         borderTopWidth: 1,
-        borderTopColor: '#EEE'
+        borderTopColor: '#EEE',
+        elevation: 10
     },
     actionCount: {
         fontSize: 14,
         fontWeight: 'bold',
-        marginBottom: 10
+        color: '#334155',
+        marginBottom: 12
     },
     btnAction: {
         backgroundColor: '#00A8B5',
-        height: 50,
+        height: 52,
         borderRadius: 10,
         flexDirection: 'row',
         alignItems: 'center',
@@ -155,6 +195,24 @@ export default StyleSheet.create({
     },
     btnActionText: {
         color: '#FFF',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 15
     },
-});
+
+    // --- BOTTOM TAB CUSTOMIZADA ---
+    bottomTab: {
+        height: 70,
+        backgroundColor: '#FFF',
+        flexDirection: 'row',
+        borderTopWidth: 1,
+        borderTopColor: '#F1F5F9',
+        alignItems: 'center'
+    },
+    tabItem: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+}
+);
+export default styles;

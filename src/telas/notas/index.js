@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList, Image, ScrollView, SafeAreaView } from 'react-native';
+import logoContaxCor from '../../../assets/logoContaxCor.png';
 import styles from './styles';
 
 export default function Documentos() {
@@ -27,12 +28,27 @@ export default function Documentos() {
   };
 
   return (
-    <SafeAreaView style={styles.safeArea}>
       <ScrollView style={styles.container}>
 
-        {/* FILTRO (MOVIDO PARA CIMA) */}
+        {/* HEADER DO TITULO */}
+        <View style={styles.header}>
+            <View style={styles.logoContainer}>
+                <Image 
+                    source={logoContaxCor} 
+                    style={styles.logoImage} 
+                    resizeMode="contain" // Garante que a imagem não distorça
+                />
+            <View>
+                <Text style={styles.titulo}>CONTAX</Text>
+                <Text style={styles.subtitulo}>ME & MEI · Notas Fiscais</Text>
+            </View>
+         </View>
+        </View>
+
+        <View style={styles.divisor}/>
+
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Filtrar por Período:</Text>
+          <Text style={styles.cardTitulo}>Filtrar por Período:</Text>
           <View style={styles.filterRow}>
             <View style={{flex: 1, marginRight: 10}}>
               <Text style={styles.label}>Mês</Text>
@@ -48,7 +64,7 @@ export default function Documentos() {
 
         {/* LISTA DE DOCUMENTOS */}
         <View style={styles.card}>
-          <Text style={styles.cardTitle}>Lista de Documentos</Text>
+          <Text style={styles.cardTitulo}>Lista de Documentos</Text>
           <View style={styles.tableHeader}>
             <Text style={styles.th}>DATA</Text>
             <Text style={styles.th}>DESCRIÇÃO</Text>
@@ -75,17 +91,14 @@ export default function Documentos() {
           </View>
         )}
 
-        <View style={{ height: 100 }} /> 
-      </ScrollView>
-
-      {/* BOTÃO FLUTUANTE DE AÇÃO */}
+        <View style={{ height: 100 }} />
       <View style={styles.actionContainer}>
         <Text style={styles.actionCount}>{selectedDocs.length} itens selecionados</Text>
         <TouchableOpacity style={styles.btnAction}>
           <Text style={styles.btnActionText}>Visualizar / Baixar Selecionados</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+      </ScrollView>
   );
 }
 

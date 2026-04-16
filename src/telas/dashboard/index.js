@@ -1,4 +1,5 @@
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
+import logoContaxCor from '../../../assets/logoContaxCor.png';
 import styles from './styles';
 
 export default function Dashboard(){
@@ -8,22 +9,26 @@ export default function Dashboard(){
 
         {/* HEADER DO TITULO */}
         <View style={styles.header}>
+            <View style={styles.logoContainer}>
+                <Image 
+                    source={logoContaxCor} 
+                    style={styles.logoImage} 
+                    resizeMode="contain" // Garante que a imagem não distorça
+                />
             <View>
                 <Text style={styles.titulo}>CONTAX</Text>
                 <Text style={styles.subtitulo}>ME & MEI · Notas Fiscais</Text>
             </View>
-
-            <Text style={styles.visualizador}>Visualizador</Text>
          </View>
+        </View>
 
-
+        <View style={styles.divisor}/>
+        
          {/* Card -- Visão Geral */}
          <View style={styles.card}>
             <Text style={styles.cardTitulo}>
                 Visão Geral — Janeiro de 2026
             </Text>
-
-            <View style={styles.divisor}/>
 
             <Text style={styles.cardTexto}>
                 Nenhuma nota fiscal no período.
