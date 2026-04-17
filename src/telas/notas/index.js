@@ -141,9 +141,7 @@ export default function Documentos() {
             </View>
           </View>
         )}
-
-        <View style={{ height: 100 }} />
-      <View style={styles.actionContainer}>
+      <View style={styles.previewCard}>
         <Text style={styles.actionCount}>{selectedDocs.length} itens selecionados</Text>
         <TouchableOpacity style={styles.btnAction}>
           <Text style={styles.btnActionText}>Visualizar / Baixar Selecionados</Text>
