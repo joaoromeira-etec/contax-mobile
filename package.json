@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
+<<<<<<< Updated upstream
     "@react-native-community/datetimepicker": "8.6.0",
+=======
+>>>>>>> Stashed changes
     "@react-native-picker/picker": "2.11.4",
     "@react-navigation/bottom-tabs": "^7.15.5",
     "@react-navigation/elements": "^2.9.10",

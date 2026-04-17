@@ -73,32 +73,24 @@ const styles=StyleSheet.create({
         marginBottom: 15
     },
     label: {
-        fontSize: RFPercentage(2),
-        fontWeight: '500',
-        marginBottom: RFPercentage(0.5),
-        color: '#555',
+        fontSize: 12,
+        color: '#666',
+        marginBottom: 5,
+        fontWeight: '600'
     },
-    fakeInput: {
-        height: 45,
+    pickerContainer: {
         borderWidth: 1,
         borderColor: '#E2E8F0',
-        borderRadius: 8,
+        borderRadius: 10,
+        backgroundColor: '#FFF',
+        height: 50,
         justifyContent: 'center',
-        paddingLeft: 12,
-        backgroundColor: '#F8FAFC'
     },
-    btnFilter: {
-        backgroundColor: '#00A8B5',
-        height: 45,
-        borderRadius: 8,
-        alignItems: 'center',
-        justifyContent: 'center'
+    pickerStyle: {
+        height: 50,
+        width: '100%',
+        color: '#475569',
     },
-    btnFilterText: {
-        color: '#FFF',
-        fontWeight: 'bold'
-    },
-
     // --- TABELA DE DOCUMENTOS ---
     tableHeader: {
         flexDirection: 'row',
