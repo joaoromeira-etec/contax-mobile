@@ -15,8 +15,8 @@ const styles=StyleSheet.create(
             alignItems: 'center'
         },
         logoImage: { 
-            width: 35,
-            height: 35,
+            width: 70,
+            height: 70,
             marginRight: 10
         },
         header: {
@@ -59,7 +59,7 @@ const styles=StyleSheet.create(
             fontSize: RFPercentage(2.2),
             fontWeight: 'bold',
             marginBottom: RFPercentage(1),
-            colsor: '#333',
+            color: '#333',
         },
 
         cardTexto: {
@@ -69,6 +69,24 @@ const styles=StyleSheet.create(
             marginTop: RFPercentage(1),
             marginBottom: RFPercentage(2),
         },
+
+        summaryRow: {
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          marginTop: RFPercentage(1),
+        },
+
+        summaryLabel: {
+          fontSize: RFPercentage(1.8),
+          color: '#9ca3af',
+        },
+
+        summaryValue: {
+          fontSize: RFPercentage(2.5),
+          fontWeight: 'bold',
+          color: '#0ea5b7',
+        },
+
     // --- FILTROS ---
         label: {
             fontSize: RFPercentage(2),
@@ -96,7 +114,8 @@ const styles=StyleSheet.create(
             },
         button:{
             padding: 10,
-            backgroundColor:'#0091A5',
+            backgroundColor:'#0cbddd',
+            borderRadius: 7.5,
         },
         buttontxt:{
             textAlign: 'center',
@@ -104,6 +123,48 @@ const styles=StyleSheet.create(
             fontWeight: 'bold',
             marginHorizontal: '25%',
         },
+
+    // -- NOTAS --
+
+    emptyText: {
+  textAlign: 'center',
+  color: '#9ca3af',
+  marginTop: RFPercentage(2),
+},
+
+notaItem: {
+  paddingVertical: RFPercentage(1.5),
+  borderBottomWidth: 1,
+  borderBottomColor: '#f1f5f9',
+},
+
+notaHeader: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: RFPercentage(0.5),
+},
+
+notaData: {
+  fontSize: RFPercentage(1.8),
+  color: '#6b7280',
+},
+
+notaValor: {
+  fontSize: RFPercentage(2),
+  fontWeight: 'bold',
+  color: '#0ea5b7',
+},
+
+notaEmpresa: {
+  fontSize: RFPercentage(2),
+  fontWeight: '600',
+  color: '#374151',
+},
+
+notaDescricao: {
+  fontSize: RFPercentage(1.8),
+  color: '#9ca3af',
+},
         }
     );
 export default styles;

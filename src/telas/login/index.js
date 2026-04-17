@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Platform, Alert, Image} from 'react-native';
 import styles from './styles';
+
+import Logo from "../../../assets/logoContaxCor.png";
 
 export default function Login({navigation}) {
 // ESTADOS (A memória do componente)
@@ -53,6 +55,11 @@ return (
       <ScrollView contentContainerStyle={styles.container}>
         
         <View style={styles.header}>
+          <Image 
+                    source={Logo} 
+                    style={styles.logoImage} 
+                    resizeMode="contain" // Garante que a imagem não distorça
+                />
           <Text style={styles.logoText}>CONTAX</Text>
           <Text style={styles.subLogo}>Gestão ME & MEI</Text>
         </View>
@@ -83,7 +90,7 @@ return (
 
         {/* ESQUECI MINHA SENHA (OPCIONAL) */}
         <TouchableOpacity style={{ alignSelf: 'flex-end', marginBottom: 20 }}>
-          <Text style={{ color: '#00A8B5', fontSize: 13 }}>Esqueceu a senha?</Text>
+          <Text style={{ color: '#0cbddd', fontSize: 13 }}>Esqueceu a senha?</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 

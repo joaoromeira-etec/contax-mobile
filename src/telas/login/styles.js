@@ -12,10 +12,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 40,
   },
+  logoImage: { 
+      width: 125,
+      height: 125,
+      marginRight: 10
+  },
   logoText: {
     fontSize: 26,
     fontWeight: 'bold',
-    color: '#00A8B5', // Ciano da marca
+    color: '#0cbddd', // Ciano da marca
     letterSpacing: 1,
   },
   subLogo: {
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#00A8B5',
+    backgroundColor: '#0cbddd',
     height: 55,
     borderRadius: 10,
     marginTop: 35,
