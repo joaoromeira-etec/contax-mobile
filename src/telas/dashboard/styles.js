@@ -124,6 +124,23 @@ const styles=StyleSheet.create(
             marginHorizontal: '25%',
         },
 
+        filterRow: {
+            flexDirection: 'row',
+            gap: 10,
+        },
+
+        pickerContainer: {
+            borderWidth: 1,
+            borderColor: '#E2E8F0',
+            borderRadius: 8,
+            backgroundColor: '#FFF',
+            marginTop: 5,
+        },
+
+        pickerStyle: {
+            height: 55,
+        },
+
     // -- NOTAS --
 
     emptyText: {

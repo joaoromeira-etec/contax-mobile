@@ -1,6 +1,6 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image } from 'react-native';
 import { useState, useMemo } from 'react';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { Picker } from '@react-native-picker/picker';
 import logoContaxCor from '../../../assets/logoContaxCor.png';
 import styles from './styles';
 
@@ -24,38 +24,52 @@ export default function Dashboard(){
     }
   ]);
 
+  // ===== DATA ATUAL =====
+  const dataHoje = new Date();
+  const anoAtual = dataHoje.getFullYear();
+
+  // ===== ESTADOS DO FILTRO =====
+  const [mesSelecionado, setMesSelecionado] = useState(
+    String(dataHoje.getMonth() + 1).padStart(2, '0')
+  );
+
+  const [anoSelecionado, setAnoSelecionado] = useState(
+    anoAtual.toString()
+  );
+
+  // ===== MESES =====
+  const meses = [
+    { label: 'Janeiro', value: '01' },
+    { label: 'Fevereiro', value: '02' },
+    { label: 'Março', value: '03' },
+    { label: 'Abril', value: '04' },
+    { label: 'Maio', value: '05' },
+    { label: 'Junho', value: '06' },
+    { label: 'Julho', value: '07' },
+    { label: 'Agosto', value: '08' },
+    { label: 'Setembro', value: '09' },
+    { label: 'Outubro', value: '10' },
+    { label: 'Novembro', value: '11' },
+    { label: 'Dezembro', value: '12' },
+  ];
+
+  // ===== ANOS =====
+  const anosDisponiveis = [];
+  for (let i = 2020; i <= anoAtual; i++) {
+    anosDisponiveis.push(i.toString());
+  }
+  anosDisponiveis.reverse();
+
   // ===== FILTRO =====
-  const [mesFiltro, setMesFiltro] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
-
-  // converter Date → YYYY-MM
-  function formatMonth(date){
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    return `${year}-${month}`;
-  }
-
-  // texto bonito
-  function formatMonthLabel(date){
-    return date.toLocaleDateString("pt-BR", {
-      month: "long",
-      year: "numeric"
-    });
-  }
-
   const notasFiltradas = useMemo(() => {
-    const mesFiltroFormatado = formatMonth(mesFiltro);
-
-    const [anoFiltro, mesFiltroNum] = mesFiltroFormatado.split("-");
-
     return notas.filter((nota) => {
       if (!nota.data) return false;
 
       const [dia, mes, ano] = nota.data.split("/");
 
-      return ano === anoFiltro && mes === mesFiltroNum;
+      return mes === mesSelecionado && ano === anoSelecionado;
     });
-  }, [notas, mesFiltro]);
+  }, [notas, mesSelecionado, anoSelecionado]);
 
   // ===== RESUMO =====
   const totalNotas = notasFiltradas.length;
@@ -71,6 +85,8 @@ export default function Dashboard(){
       currency: "BRL",
     });
   }
+
+  const nomeMes = meses.find(m => m.value === mesSelecionado)?.label;
 
   return (
     <ScrollView style={styles.container}>
@@ -96,7 +112,7 @@ export default function Dashboard(){
       {/* ===== VISÃO GERAL ===== */}
       <View style={styles.card}>
         <Text style={styles.cardTitulo}>
-          Visão Geral — {formatMonthLabel(mesFiltro)}
+          Visão Geral — {nomeMes} de {anoSelecionado}
         </Text>
 
         <View style={styles.divisor}/>
@@ -119,33 +135,44 @@ export default function Dashboard(){
       {/* ===== FILTRO ===== */}
       <View style={styles.card}>
         <Text style={styles.cardTitulo}>Filtro</Text>
-
         <View style={styles.divisor}/>
 
-        <Text style={styles.label}>Mês</Text>
+        <View style={styles.filterRow}>
 
-        <TouchableOpacity 
-          style={styles.select}
-          onPress={() => setShowPicker(true)}
-        >
-          <Text style={styles.selectTxt}>
-            {formatMonthLabel(mesFiltro)}
-          </Text>
-        </TouchableOpacity>
+          {/* MÊS */}
+          <View style={{ flex: 1 }}>
+            <Text style={styles.label}>Mês</Text>
+            <View style={styles.pickerContainer}>
+              <Picker
+                selectedValue={mesSelecionado}
+                onValueChange={setMesSelecionado}
+                style={styles.pickerStyle}
+              >
+                {meses.map((m) => (
+                  <Picker.Item key={m.value} label={m.label} value={m.value} />
+                ))}
+              </Picker>
+            </View>
+          </View>
+
+          {/* ANO */}
+          <View style={{ flex: 1 }}>
+            <Text style={styles.label}>Ano</Text>
+            <View style={styles.pickerContainer}>
+              <Picker
+                selectedValue={anoSelecionado}
+                onValueChange={setAnoSelecionado}
+                style={styles.pickerStyle}
+              >
+                {anosDisponiveis.map((ano) => (
+                  <Picker.Item key={ano} label={ano} value={ano} />
+                ))}
+              </Picker>
+            </View>
+          </View>
+
+        </View>
       </View>
-
-      {/* PICKER */}
-      {showPicker && (
-        <DateTimePicker
-          value={mesFiltro}
-          mode="date"
-          display="default"
-          onChange={(event, selectedDate) => {
-            setShowPicker(false);
-            if (selectedDate) setMesFiltro(selectedDate);
-          }}
-        />
-      )}
 
       {/* ===== NOTAS ===== */}
       <View style={styles.card}>
