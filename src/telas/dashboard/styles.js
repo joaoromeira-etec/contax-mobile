@@ -52,7 +52,8 @@ const styles=StyleSheet.create(
             height: RFPercentage(0.2),
             width: '100%',
             backgroundColor: '#E2E8F0',
-            marginVertical: RFPercentage(1)
+            marginVertical: RFPercentage(1),
+            marginBottom: RFPercentage(1)
         },
 
         cardTitulo: {

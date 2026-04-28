@@ -12,7 +12,7 @@ export default function MyTabs() {
     <Tab.Navigator
 screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: '#00A8B5', // Ciano da CONTAX
+        tabBarActiveTintColor: '#0cbddd', // Ciano da CONTAX
         tabBarInactiveTintColor: '#888',
         tabBarStyle: { 
           height: 65, 

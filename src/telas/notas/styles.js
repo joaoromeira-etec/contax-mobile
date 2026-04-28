@@ -15,9 +15,9 @@ const styles=StyleSheet.create({
         alignItems: 'center' 
     },
     logoImage: { 
-        width: 35, 
-        height: 35, 
-        marginRight: 10 
+        width: 70,
+        height: 70,
+        marginRight: 10
     },
     header: {
         flexDirection: 'row',
@@ -34,6 +34,8 @@ const styles=StyleSheet.create({
         fontSize: RFPercentage(1.8),
         color: '#777',
     },
+    
+
     // --- CARDS E CONTEÚDO ---
     card: {
         backgroundColor: '#FFF',
@@ -52,7 +54,8 @@ const styles=StyleSheet.create({
         height: RFPercentage(0.2),
         width: '100%',
         backgroundColor: '#E2E8F0',
-        marginVertical: RFPercentage(1)
+        marginVertical: RFPercentage(0.5),
+        marginBottom: RFPercentage(1)
     },
     cardTitulo: {
         fontSize: RFPercentage(2.2),
@@ -178,7 +181,7 @@ const styles=StyleSheet.create({
         marginBottom: 12
     },
     btnAction: {
-        backgroundColor: '#00A8B5',
+        backgroundColor: '#0cbddd',
         height: 52,
         borderRadius: 10,
         flexDirection: 'row',
